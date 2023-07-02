@@ -1,26 +1,25 @@
 <template>
   <div class="bg-slate-800 h-screen">
     <div 
-      class=" bg-slate-800 text-center h-[80vh] flex items-center justify-center"
+      class=" bg-slate-800 text-center h-[70vh] flex items-center justify-center"
     >
       <span
-        class="text-slate-500 text-9xl border-4 border-slate-500 rounded-full w-56 h-56 pt-10"
-        :class="{ 'text-red-600': counter === 0 }"
+        class="text-9xl border-8 border-slate-500 rounded-full w-56 h-56 flex items-center justify-center"
+        :class="counter ? 'text-slate-500' : 'text-red-400'"
       >
         {{ counter }}
       </span>
     </div>
   
     <div class="flex align-center justify-center">
-      <button class="button bg-red-400" @click="stopTimer">Stop</button>
+      <button class="button stop-button" @click="stopTimer">Stop</button>
     </div>
 
-    <div class="mt-10 flex justify-center items-center space-x-3">
-      <button class="button" @click="addSeconds(5)">5s</button>
-      <button class="button" @click="addSeconds(30)">30s</button>
-      <button class="button" @click="addSeconds(60)">1m</button>
-      <button class="button" @click="addSeconds(90)">1m30s</button>
-      <button class="button" @click="addSeconds(120)">2m</button>
+    <div class="mt-5 flex justify-center items-center space-x-3">
+      <button class="button add-button" @click="addSeconds(5)">+5s</button>
+      <button class="button add-button" @click="addSeconds(10)">+10s</button>
+      <button class="button add-button" @click="addSeconds(15)">+15s</button>
+      <button class="button add-button" @click="addSeconds(30)">+30s</button>
     </div>  
   </div>
 </template>
@@ -36,7 +35,7 @@ export default {
   },
   methods: {
     addSeconds(seconds) {
-      this.counter = seconds;
+      this.counter += seconds;
 
       this.startTimer();
     },
@@ -74,6 +73,14 @@ export default {
 
 <style scoped>
 .button {
-  @apply border border-slate-700 rounded w-32 text-slate-200 text-xl p-2
+  @apply border-4 rounded-full w-20 h-20 text-xl flex items-center justify-center font-bold 
+}
+
+.stop-button {
+  @apply bg-red-400 text-white
+}
+
+.add-button {
+  @apply border-slate-500 text-slate-500  
 }
 </style>
