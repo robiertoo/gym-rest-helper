@@ -24,51 +24,47 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      counter: 0,
-      interval: null,
-    };
-  },
-  methods: {
-    addSeconds(seconds) {
-      this.counter += seconds;
+<script setup>
+import { ref, watch } from 'vue';
 
-      this.startTimer();
-    },
-    startTimer() {
-      clearInterval(this.interval);
-      
-      this.interval = setInterval(() => {
-        if (this.counter === 0) {
-          return clearInterval(this.interval);
-        }
-        
-        this.counter--;
-      }, 1000);
-    },
-    stopTimer() {
-      clearInterval(this.interval);
-      this.counter = 0;
-    },
-  },
-  watch: {
-    counter(newCounter) {
-      if (! newCounter) {
-        console.log('The time is over!');
+const counter = ref(0);
+const interval = ref(null);
 
-        const alarm = new Audio(require('@/assets/alarm-beep.wav'));
+function addSeconds(seconds) {
+  counter.value += seconds;
 
-        alarm.play();
-
-        setTimeout(() => alarm.pause(), 3500);
-      }
-    },
-  }
+  startTimer();
 }
+
+function startTimer() {
+  clearInterval(interval.value);
+  
+  interval.value = setInterval(() => {
+    if (! counter.value) {
+      return clearInterval(interval.value);
+    }
+    
+    counter.value--;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval.value);
+
+  counter.value = 0;
+}
+
+watch(counter, (newCounter) => {
+  if (newCounter) {
+    return;
+  }
+
+  const alarm = new Audio(require('@/assets/alarm-beep.wav'));
+
+  alarm.play();
+
+  setTimeout(() => alarm.pause(), 3500);
+})
 </script>
 
 <style scoped>
