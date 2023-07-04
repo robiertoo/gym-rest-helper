@@ -59,11 +59,13 @@ watch(counter, (newCounter) => {
     return;
   }
 
-  const alarm = new Audio(require('@/assets/alarm-beep.wav'));
+  navigator.vibrate([100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100, 200, 200, 100, 100, 100, 100, 200, 100]);
 
-  alarm.play();
+  // const alarm = new Audio(require('@/assets/alarm-beep.wav'));
 
-  setTimeout(() => alarm.pause(), 3500);
+  // alarm.play();
+
+  // setTimeout(() => alarm.pause(), 3500);
 })
 </script>
 
