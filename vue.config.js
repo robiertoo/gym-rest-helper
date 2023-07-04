@@ -4,6 +4,6 @@ module.exports = defineConfig({
     workboxOptions: {
       skipWaiting: true
     }
-  }
+  },
   transpileDependencies: true
 })
